@@ -16,8 +16,19 @@
         <dt class="bold">Number of episodes</dt>
         <dd class="caption">{{ animeDetail.total_episodes }}</dd>
         <hr />
-
+        <ul class="list-group">
+          <li 
+            class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let season of animeDetail.seasons; let i = index">
+            Season {{ i + 1 }}: {{ season.name }}
+            <span class="badge text-bg-primary rounded-pill">
+              {{ season.episodes }} episodes
+            </span>
+          </li>
+        </ul>
+        <hr />
       </dl>
+      <button class="btn btn-secondary" (click)="onBack()">Volver</button>
     </div>
     <div class="col-3">
       <div class="thumb">

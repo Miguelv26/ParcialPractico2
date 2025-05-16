@@ -11,6 +11,7 @@ export class AnimeListComponent implements OnInit {
 
   selectedBAnime!: Anime;
   selected = false;
+  selectedAnime: Anime | null = null;
   animes: Array<Anime> = [];
   constructor(private animeService: AnimeService) { }
 
@@ -20,9 +21,19 @@ export class AnimeListComponent implements OnInit {
     });
   }
 
+  getRatingPromedio(): number {
+    const total = this.animes.reduce((sum, anime) => sum + Number(anime.Rating), 0);
+    return Number((total / this.animes.length).toFixed(2));
+  }
+
   onSelected(anime: Anime): void {
     this.selected = true;
     this.selectedBAnime = anime;
+    this.selectedAnime = anime;
+  }
+
+  onBack(): void {
+    this.selectedAnime = null;
   }
 
   ngOnInit() {

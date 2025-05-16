@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Anime } from '../anime';
 
 @Component({
@@ -6,14 +6,17 @@ import { Anime } from '../anime';
   templateUrl: './anime-detail.component.html',
   styleUrls: ['./anime-detail.component.css']
 })
-export class AnimeDetailComponent implements OnInit {
-
+export class AnimeDetailComponent {
   @Input() animeDetail!: Anime;
+  @Output() back = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onBack() {
+    this.back.emit();
+  }
 
 }
